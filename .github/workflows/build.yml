@@ -1,15 +1,15 @@
 name: build
-on:
-  push:
-    paths:
-    - '**.c'
+on: push
 jobs:
   windows-build:
     runs-on: windows-2019
-    run: gcc app.c -o app -mwindows -lmingw32 -lSDL2main -lSDL2
+    steps:
+      - run: gcc app.c -o app -mwindows -lmingw32 -lSDL2main -lSDL2
   macos-build:
     runs-on: macos-10.15
-    run: clang app.c -o app -lSDL2
+    steps:
+      - run: clang app.c -o app -lSDL2
   linux-build:
     runs-on: ubuntu-20.04
-    run: gcc app.c -o app -lSDL2
+    steps:
+      - run: gcc app.c -o app -lSDL2
