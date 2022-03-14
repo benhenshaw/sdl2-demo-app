@@ -15,6 +15,7 @@ jobs:
       - run: brew install sdl2
       - run: clang app.c -o app `sdl2-config --cflags --libs`
       - uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
          files: app
   linux-build:
@@ -25,5 +26,6 @@ jobs:
       - run: sudo apt install libsdl2-dev
       - run: gcc app.c -o app `sdl2-config --cflags --libs`
       - uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
          files: app
