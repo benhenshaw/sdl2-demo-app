@@ -1,15 +1,19 @@
 name: build
 on: push
 jobs:
-  windows-build:
-    runs-on: windows-2019
-    steps:
-      - run: gcc app.c -o app -mwindows -lmingw32 -lSDL2main -lSDL2
+#   windows-build:
+#     runs-on: windows-2019
+#     steps:
+#       - run: curl 'https://libsdl.org/release/SDL2-devel-2.0.20-mingw.tar.gz'
+#       - run: unzip SDL2-devel-2.0.20-mingw.tar.gz
+#       - run: gcc app.c -o app -mwindows -lmingw32 -lSDL2main -lSDL2
   macos-build:
     runs-on: macos-10.15
     steps:
+      - run: brew install sdl2
       - run: clang app.c -o app -lSDL2
   linux-build:
     runs-on: ubuntu-20.04
     steps:
+      - run: apt install libsdl2-dev
       - run: gcc app.c -o app -lSDL2
