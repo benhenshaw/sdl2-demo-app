@@ -4,12 +4,19 @@ on:
     tags:        
       - '**'
 jobs:
-#   windows-build:
-#     runs-on: windows-2019
-#     steps:
-#       - run: curl 'https://libsdl.org/release/SDL2-devel-2.0.20-mingw.tar.gz'
-#       - run: unzip SDL2-devel-2.0.20-mingw.tar.gz
-#       - run: gcc app.c -o app -mwindows -lmingw32 -lSDL2main -lSDL2
+  windows-build:
+    runs-on: windows-2019
+    steps:
+      - run: curl 'https://libsdl.org/release/SDL2-devel-2.0.20-mingw.tar.gz'
+      - run: 7z SDL2-devel-2.0.20-mingw.tar.gz
+      - run: SDL2-2.0.20\x86_64-w64-mingw32\bin\sdl2-config --cflags --libs > flags.txt
+      - run: set /p FLAGS=<flags.txt
+      - run: gcc app.c -o app %FLAGS%
+      - run: zip app_windows.zip app
+      - uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+         files: app_windows.zip
   macos-build:
     runs-on: macos-10.15
     steps:
