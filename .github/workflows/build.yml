@@ -17,18 +17,20 @@ jobs:
       - run: brew update
       - run: brew install sdl2
       - run: clang app.c -o app `sdl2-config --cflags --libs`
+      - run: zip app_macos.zip app
       - uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-         files: app
+         files: app_macos.zip
   linux-build:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - run: sudo apt update
-      - run: sudo apt install libsdl2-dev
+      - run: sudo apt install zip libsdl2-dev
       - run: gcc app.c -o app `sdl2-config --cflags --libs`
+      - run: zip app_linux.zip app
       - uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-         files: app
+         files: app_linux.zip
