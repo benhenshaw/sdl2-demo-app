@@ -10,10 +10,11 @@ jobs:
   macos-build:
     runs-on: macos-10.15
     steps:
+      - run: ls
       - run: brew install sdl2
       - run: clang app.c -o app -lSDL2
   linux-build:
     runs-on: ubuntu-20.04
     steps:
-      - run: apt install libsdl2-dev
+      - run: sudo apt install libsdl2-dev
       - run: gcc app.c -o app -lSDL2
