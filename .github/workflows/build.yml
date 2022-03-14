@@ -8,7 +8,7 @@ jobs:
     runs-on: windows-2019
     steps:
       - run: curl 'https://libsdl.org/release/SDL2-devel-2.0.20-mingw.tar.gz' -o SDL2.tar.gz
-      - run: tar -xf SDL2.tar.gz -o*
+      - run: tar -xf SDL2.tar.gz
       - run: copy SDL2-2.0.20\x86_64-w64-mingw32\bin\sdl2-config sdl2-config
       - run: sdl2-config --cflags --libs > flags.txt
       - run: set /p FLAGS=<flags.txt
