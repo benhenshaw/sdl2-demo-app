@@ -14,6 +14,9 @@ jobs:
       - run: brew update
       - run: brew install sdl2
       - run: clang app.c -o app `sdl2-config --cflags --libs`
+      - uses: softprops/action-gh-release@v1
+        with:
+         files: app
   linux-build:
     runs-on: ubuntu-20.04
     steps:
@@ -21,3 +24,6 @@ jobs:
       - run: sudo apt update
       - run: sudo apt install libsdl2-dev
       - run: gcc app.c -o app `sdl2-config --cflags --libs`
+      - uses: softprops/action-gh-release@v1
+        with:
+         files: app
