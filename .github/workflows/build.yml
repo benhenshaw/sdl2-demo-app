@@ -1,5 +1,8 @@
 name: build
-on: push
+on: 
+  push:
+    tags:        
+      - '**'
 jobs:
 #   windows-build:
 #     runs-on: windows-2019
